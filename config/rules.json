@@ -1,20 +1,3 @@
 {
-  "rules": [
-    {
-      "text": ["裁决之刃", "黄金裁决"],
-      "color": "#FF0000",
-      "fontWeight": "bold",
-      "backgroundColor": "#FF000022"
-    },
-    {
-      "text": ["黄金屠龙"],
-      "color": "#00FF00",
-      "border": "1px solid #00FF00"
-    },
-    {
-      "text": ["无极棍", "逍遥扇"],
-      "color": "#0000FF",
-      "fontStyle": "italic"
-    }
-  ]
+  "rules": []
 }
