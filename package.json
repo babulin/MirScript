@@ -3,7 +3,7 @@
   "displayName": "MirScript",
   "publisher": "Ahlin",
   "description": "传奇脚本编辑器txt文档代码高亮",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "engines": {
     "vscode": "^1.101.0"
   },
