@@ -7,18 +7,36 @@ export function activate(context: vscode.ExtensionContext) {
   console.log("文本高亮扩展已激活");
 
   let decorationTypes: Record<string, vscode.TextEditorDecorationType> = {};
+  let userRules: HighlightConfig = { rules: [] };
   let config: HighlightConfig = { rules: [] };
-
   // 加载配置文件
   const loadConfiguration = () => {
+    //本地配置
     const configPath = path.join(context.extensionPath, "config", "rules.json");
+    // 获取用户配置路径
+    const userConfigPath = path.join(
+      vscode.workspace.workspaceFolders?.[0]?.uri.fsPath || "",
+      ".vscode",
+      "rules.json"
+    );
+
     try {
+      // 先尝试读取用户配置
+
+      if (fs.existsSync(userConfigPath)) {
+        const userConfig = fs.readFileSync(userConfigPath, "utf-8");
+        userRules = JSON.parse(userConfig) as HighlightConfig;
+      }
+
       const rawData = fs.readFileSync(configPath, "utf-8");
       const loadedConfig = JSON.parse(rawData) as HighlightConfig;
 
       // 验证配置
       if (Array.isArray(loadedConfig.rules)) {
         config = loadedConfig;
+        if (Array.isArray(userRules.rules)) {
+          config.rules = [...loadedConfig.rules, ...userRules.rules];
+        }
         console.log("高亮配置已加载:", config);
 
         // 清除旧的装饰器
@@ -107,6 +125,10 @@ export function activate(context: vscode.ExtensionContext) {
   const configPath = path.join(context.extensionPath, "config", "rules.json");
   const watcher = vscode.workspace.createFileSystemWatcher(configPath);
 
+  // 监听配置变化
+  const userPath = path.join(context.extensionPath, ".vscode", "rules.json");
+  const userWatcher = vscode.workspace.createFileSystemWatcher(userPath);
+
   watcher.onDidChange(() => {
     loadConfiguration();
     updateAllEditors();
@@ -125,6 +147,7 @@ export function activate(context: vscode.ExtensionContext) {
   // 事件监听
   context.subscriptions.push(
     watcher,
+    userWatcher,
     reloadCommand,
     vscode.window.onDidChangeActiveTextEditor(updateDecorations),
     vscode.workspace.onDidChangeTextDocument((event) => {

@@ -24,6 +24,23 @@
 
 直接安装，配置rules.json,并且ctrl+shift+p 使用 "重新加载高亮配置" 命令来重载
 
+### 1.0.2
+
+在.vscode 下rules.json添加以下配置
+{
+  "rules": [
+    {
+      "text": ["黄金麻花"], //匹配文字
+      "color": "#FF0000", //颜色
+      "border": "2px solid #FF0000", //边框
+      "fontStyle": "", //文字类型
+      "backgroundColor": "#FFFFFF", //背景颜色
+      "fontWeight":"bold" //文字粗细
+      "borderRadius":"5px", //圆角
+    }
+  ]
+}
+
 ## For more information
 
 
