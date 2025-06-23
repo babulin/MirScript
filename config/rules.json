@@ -1,3 +1,14 @@
 {
-  "rules": []
+  "rules": [
+    {
+      "text": [],
+      "regex": ["#CHILD\\s+\\d+/\\d+\\s+RANDOM"],
+      "color": "#569cf1"
+    },
+     {
+      "text": ["(", ")"],
+      "regex": [],
+      "color": "#FFAF00"
+    }
+  ]
 }

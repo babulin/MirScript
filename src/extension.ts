@@ -7,6 +7,7 @@ export function activate(context: vscode.ExtensionContext) {
   console.log("文本高亮扩展已激活");
 
   let decorationTypes: Record<string, vscode.TextEditorDecorationType> = {};
+  let decorationRegex: Record<string, vscode.TextEditorDecorationType> = {};
   let userRules: HighlightConfig = { rules: [] };
   let config: HighlightConfig = { rules: [] };
   // 加载配置文件
@@ -45,6 +46,12 @@ export function activate(context: vscode.ExtensionContext) {
         );
         decorationTypes = {};
 
+        // 清除旧的装饰器
+        Object.values(decorationRegex).forEach((decoration) =>
+          decoration.dispose()
+        );
+        decorationRegex = {};
+
         // 为每个规则创建装饰器
         config.rules.forEach((rule) => {
           rule.text.forEach((text) => {
@@ -59,6 +66,22 @@ export function activate(context: vscode.ExtensionContext) {
                 overviewRulerColor: rule.color
               });
           });
+
+          //正则表达式
+          if (rule.regex) {
+            rule.regex.forEach((text) => {
+              decorationRegex[text] =
+                vscode.window.createTextEditorDecorationType({
+                  color: rule.color,
+                  backgroundColor: rule.backgroundColor,
+                  fontWeight: rule.fontWeight,
+                  fontStyle: rule.fontStyle,
+                  border: rule.border,
+                  borderRadius: rule.borderRadius,
+                  overviewRulerColor: rule.color
+                });
+            });
+          }
         });
       } else {
         throw new Error("配置格式无效: rules 必须是数组");
@@ -103,6 +126,31 @@ export function activate(context: vscode.ExtensionContext) {
           editor.setDecorations(decorationTypes[ruleText], decorations);
         }
       });
+
+      // 正则表达式
+      if (rule.regex) {
+        rule.regex.forEach((ruleText) => {
+          const decorations: vscode.DecorationOptions[] = [];
+          const regex = new RegExp(ruleText, "g");
+          let match: RegExpExecArray | null;
+
+          while ((match = regex.exec(text))) {
+            const startPos = editor.document.positionAt(match.index);
+            const endPos = editor.document.positionAt(
+              match.index + match[0].length
+            );
+
+            decorations.push({
+              range: new vscode.Range(startPos, endPos),
+              hoverMessage: `高亮文本: ${ruleText}`
+            });
+          }
+
+          if (decorationRegex[ruleText]) {
+            editor.setDecorations(decorationRegex[ruleText], decorations);
+          }
+        });
+      }
     });
   };
 
