@@ -1,12 +1,49 @@
 {
   "rules": [
     {
-      "text": ["黄金麻花", "BC", "AB"],
-      "color": "#FF0000"
+      "text": [],
+      "regex": ["#CHILD\\s+\\d+/\\d+\\s+RANDOM", "#CHILD\\s+\\d+/\\d+\\s"],
+      "color": "#569cf1"
     },
     {
-      "text": ["黄金麻花"],
-      "color": "#FF0000"
+      "text": [],
+      "regex": ["\\[@[\u4e00-\u9fa5]+\\]"],
+      "color": "#66CD00"
+    },
+    {
+      "text": [],
+      "regex": ["\\[@[a-zA-Z]+\\]"],
+      "color": "#569cf1"
+    },
+    {
+      "text": [],
+      "regex": ["\\{", "\\}"],
+      "color": "#66CD00"
+    },
+    {
+      "text": [],
+      "regex": ["\\(.*?\\)"],
+      "color": "#FFFFFF"
+    },
+    {
+      "text": [],
+      "regex": ["\\(", "\\)"],
+      "color": "#FFAF00"
+    },
+    {
+      "text": [],
+      "regex": ["#CALL"],
+      "color": "#66CD00"
+    },
+    {
+      "text": [],
+      "regex": ["\\[.*?\\.txt]"],
+      "color": "#66CD00"
+    },
+    {
+      "text": [],
+      "regex": ["\\@.*?\\s"],
+      "color": "#66CD00"
     }
   ]
 }

@@ -8,7 +8,7 @@
     {
       "text": [],
       "regex": ["\\[@[\u4e00-\u9fa5]+\\]"],
-      "color": "#00FF00"
+      "color": "#66CD00"
     },
     {
       "text": [],
@@ -18,7 +18,7 @@
     {
       "text": [],
       "regex": ["\\{", "\\}"],
-      "color": "#EEE8AA"
+      "color": "#66CD00"
     },
     {
       "text": [],
@@ -33,17 +33,17 @@
     {
       "text": [],
       "regex": ["#CALL"],
-      "color": "#00FF00"
+      "color": "#66CD00"
     },
     {
       "text": [],
       "regex": ["\\[.*?\\.txt]"],
-      "color": "#00FF00"
+      "color": "#66CD00"
     },
     {
       "text": [],
       "regex": ["\\@.*?\\s"],
-      "color": "#00FF00"
+      "color": "#66CD00"
     }
   ]
 }
