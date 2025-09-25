@@ -5,10 +5,16 @@
 ### 运行打包发布
 ```
 yarn install
-vcscode F5 运行
-ctrl+shift+p 重新加载高亮配置
-yarn global add vsce # 或者使用 yarn
-vsce package
+#运行
+vcscode F5 
+
+ctrl+shift+p #重新加载高亮配置
+
+npm install -g @vscode/vsce #或者使用 yarn
+
+#在package.json中修改版本号
+
+vsce package #打包
 ```
 
 ## Features
