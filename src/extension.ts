@@ -118,7 +118,7 @@ export function activate(context: vscode.ExtensionContext) {
 
           decorations.push({
             range: new vscode.Range(startPos, endPos),
-            hoverMessage: `高亮文本: ${ruleText}`
+            hoverMessage: `正则: ${ruleText}, 颜色: ${rule.color}`
           });
         }
 
@@ -142,7 +142,7 @@ export function activate(context: vscode.ExtensionContext) {
 
             decorations.push({
               range: new vscode.Range(startPos, endPos),
-              hoverMessage: `高亮文本: ${ruleText}`
+              hoverMessage: `正则: ${ruleText}, 颜色: ${rule.color}`
             });
           }
 

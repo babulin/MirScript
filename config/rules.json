@@ -2,13 +2,48 @@
   "rules": [
     {
       "text": [],
-      "regex": ["#CHILD\\s+\\d+/\\d+\\s+RANDOM"],
+      "regex": ["#CHILD\\s+\\d+/\\d+\\s+RANDOM", "#CHILD\\s+\\d+/\\d+\\s"],
       "color": "#569cf1"
     },
-     {
-      "text": ["(", ")"],
-      "regex": [],
+    {
+      "text": [],
+      "regex": ["\\[@[\u4e00-\u9fa5]+\\]"],
+      "color": "#00FF00"
+    },
+    {
+      "text": [],
+      "regex": ["\\[@[a-zA-Z]+\\]"],
+      "color": "#569cf1"
+    },
+    {
+      "text": [],
+      "regex": ["\\{", "\\}"],
+      "color": "#EEE8AA"
+    },
+    {
+      "text": [],
+      "regex": ["\\(.*?\\)"],
+      "color": "#FFFFFF"
+    },
+    {
+      "text": [],
+      "regex": ["\\(", "\\)"],
       "color": "#FFAF00"
+    },
+    {
+      "text": [],
+      "regex": ["#CALL"],
+      "color": "#00FF00"
+    },
+    {
+      "text": [],
+      "regex": ["\\[.*?\\.txt]"],
+      "color": "#00FF00"
+    },
+    {
+      "text": [],
+      "regex": ["\\@.*?\\s"],
+      "color": "#00FF00"
     }
   ]
 }
